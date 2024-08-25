@@ -3,3 +3,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+ .hero-h1__stroke{
+   background-image: linear-gradient(90deg, #398BFF, #97BDF2);
+   background-clip: text;
+   -webkit-text-stroke-color: transparent;
+   -webkit-text-stroke-width: calc(5em / 16);
+   -webkit-background-clip: text;
+   color: white;
+ }
+}

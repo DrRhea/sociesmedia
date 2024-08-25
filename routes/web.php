@@ -1,7 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 Route::get('/', function () {
-  return inertia('Home');
+  return Inertia::render('Beranda/Beranda');
+});
+
+Route::get('/media', function () {
+  return Inertia::render('Media/Media');
 });
