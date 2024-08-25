@@ -30,10 +30,10 @@ const articles = [
 const BerandaArtikel = () => {
     return (
         <div className="max-w-screen-xl mx-auto px-4 lg:px-8 py-4 lg:py-12">
-            <h2 className="text-3xl font-bold text-primary-600 mb-8 text-center">
+            <h2 className="text-3xl font-bold text-azure-radiance-600 mb-8 text-center">
                 Artikel Terbaru
             </h2>
-            <p className="text-primary-400 text-center mb-12 max-w-xl mx-auto">
+            <p className="text-azure-radiance-400 text-center mb-12 max-w-xl mx-auto">
                 Dapatkan informasi terkini dari dunia sosial dengan membaca artikel terbaru, selalu ada sesuatu yang baru untuk dipelajari setiap harinya.
             </p>
             <div className="flex overflow-x-scroll space-x-4 scrollbar-hide">

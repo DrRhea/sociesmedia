@@ -1,13 +1,13 @@
 import React from 'react';
-import AppLayout from "../../../Layouts/AppLayout.jsx";
+import AppLayout from "../../Layouts/AppLayout.jsx";
 import { Head } from "@inertiajs/react";
-import BerandaHero from "@/Pages/Beranda/BerandaHero.jsx";
-import BerandaKategori from "@/Pages/Beranda/BerandaKategori.jsx";
-import BerandaPilihan from "@/Pages/Beranda/BerandaPilihan.jsx";
+import BerandaHero from "./BerandaHero.jsx";
+import BerandaKategori from "./BerandaKategori.jsx";
+import BerandaPilihan from "./BerandaPilihan.jsx";
 
 import { motion } from 'framer-motion';
-import BerandaArtikel from "@/Pages/Beranda/BerandaArtikel.jsx";
-import BerandaFAQ from "@/Pages/Beranda/BerandaFAQ.jsx";
+import BerandaArtikel from "./BerandaArtikel.jsx";
+import BerandaFAQ from "./BerandaFAQ.jsx";
 
 const Beranda = () => {
     return (

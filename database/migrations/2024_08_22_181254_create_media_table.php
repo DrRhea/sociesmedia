@@ -19,16 +19,6 @@ return new class extends Migration
         $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
         $table->timestamps();
       });
-
-      Schema::table('media', function (Blueprint $table) {
-        $table->foreign('created_by')->references('id')->on('users')
-          ->onDelete('cascade')
-          ->onUpdate('cascade')
-          ->where(function ($query) {
-            $query->where('role', 'guru')
-              ->orWhere('role', 'admin');
-          });
-      });
     }
 
     /**
