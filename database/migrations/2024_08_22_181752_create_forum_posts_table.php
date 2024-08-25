@@ -19,15 +19,6 @@ return new class extends Migration
           $table->timestamps();
       });
 
-      Schema::table('forum_posts', function (Blueprint $table) {
-        $table->foreign('created_by')->references('id')->on('users')
-          ->onDelete('cascade')
-          ->onUpdate('cascade')
-          ->where(function ($query) {
-            $query->where('role', 'murid')
-              ->orWhere('role', 'guru');
-          });
-      });
     }
 
     /**

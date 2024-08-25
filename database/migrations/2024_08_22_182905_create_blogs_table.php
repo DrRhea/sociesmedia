@@ -19,15 +19,6 @@ return new class extends Migration
         $table->timestamps();
       });
 
-      Schema::table('blogs', function (Blueprint $table) {
-        $table->foreign('created_by')->references('id')->on('users')
-          ->onDelete('cascade')
-          ->onUpdate('cascade')
-          ->where(function ($query) {
-            $query->where('role', 'guru')
-              ->orWhere('role', 'admin');
-          });
-      });
     }
 
     /**

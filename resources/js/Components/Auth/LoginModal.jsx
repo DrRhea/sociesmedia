@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import ModalOverlay from './ModalOverlay';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const LoginModal = ({ onClose, onRegisterClick }) => {
     const [email, setEmail] = useState('');
@@ -16,47 +20,56 @@ const LoginModal = ({ onClose, onRegisterClick }) => {
 
     return (
         <ModalOverlay onClose={onClose}>
-            <h2 className="text-2xl font-semibold mb-6">Login</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700">Email</label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500"
-                        required
-                    />
-                </div>
-                <div className="mb-6">
-                    <label className="block text-sm font-medium text-gray-700">Password</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500"
-                        required
-                    />
-                </div>
-                <button
-                    type="submit"
-                    className="w-full bg-primary-500 text-white py-2 rounded-md hover:bg-primary-600 transition"
-                >
-                    Login
-                </button>
-            </form>
-            <button
-                onClick={handleGoogleLogin}
-                className="w-full mt-4 bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition"
-            >
-                Login with Google
-            </button>
-            <p className="mt-4 text-center text-sm text-gray-500">
-                Belum punya akun?{' '}
-                <button onClick={onRegisterClick} className="text-primary-500 hover:underline">
-                    Daftar di sini
-                </button>
-            </p>
+            <Card className="mx-auto max-w-sm">
+                <CardHeader>
+                    <CardTitle className="text-2xl">Masuk</CardTitle>
+                    <CardDescription>
+                        Masukkan emailmu di bawah untuk masuk ke akun kamu
+                    </CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <form className="grid gap-4" onSubmit={handleSubmit}>
+                        <div className="grid gap-2">
+                            <Label htmlFor="email">Email</Label>
+                            <Input
+                                id="email"
+                                type="email"
+                                placeholder="m@example.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="grid gap-2">
+                            <div className="flex items-center">
+                                <Label htmlFor="password">Password</Label>
+                                <a href="#" className="ml-auto inline-block text-sm underline">
+                                    Lupa kata sandi?
+                                </a>
+                            </div>
+                            <Input
+                                id="password"
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <Button type="submit" className="w-full">
+                            Masuk
+                        </Button>
+                        <Button variant="outline" onClick={handleGoogleLogin} className="w-full">
+                            Masuk dengan Google
+                        </Button>
+                    </form>
+                    <div className="mt-4 text-center text-sm">
+                        Belum punya akun?{" "}
+                        <button onClick={onRegisterClick} className="underline">
+                            Daftar di sini
+                        </button>
+                    </div>
+                </CardContent>
+            </Card>
         </ModalOverlay>
     );
 };

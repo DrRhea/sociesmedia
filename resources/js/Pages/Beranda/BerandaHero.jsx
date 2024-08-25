@@ -46,22 +46,22 @@ const BerandaHero = () => {
                 <h1 className="font-bold text-4xl md:text-5xl lg:text-7xl text-white text-center tracking-widest hero-h1__stroke p-3" >
                     Social Studies Multimedia
                 </h1>
-                <p className={'text-sm lg:text-base text-primary-400 mt-2 text-center max-w-xl mx-auto'}>
+                <p className={'text-sm lg:text-base text-azure-radiance-400 mt-2 text-center max-w-xl mx-auto'}>
                     Temukan video, materi, dan diskusi seru yang membantu belajar IPS dengan lebih mudah.
                 </p>
             </div>
 
             <div className={'w-full z-10'}>
-                <form onSubmit={handleSubmit} className={'relative flex gap-8 bg-white px-4 pt-2.5 pb-3 md:py-3.5 md:px-6 lg:py-4 lg:px-8 rounded-full justify-between items-center backdrop-blur-sm bg-primary-50/20 border-2 border-primary-500/20 shadow-sm w-full max-w-screen-md mx-auto'}>
+                <form onSubmit={handleSubmit} className={'relative flex gap-8 bg-white px-4 pt-2.5 pb-3 md:py-3.5 md:px-6 lg:py-4 lg:px-8 rounded-full justify-between items-center backdrop-blur-sm bg-azure-radiance-50/20 border-2 border-azure-radiance-500/20 shadow-sm w-full max-w-screen-md mx-auto'}>
                     <input
                         type="text"
                         value={query}
                         onChange={handleInputChange}
-                        className={'outline-none border-none font-medium tracking-wide focus:outline-none text-xs lg:text-base text-primary-500 w-full placeholder-primary-900/60 bg-transparent'}
+                        className={'outline-none border-none font-medium tracking-wide focus:outline-none text-xs lg:text-base text-azure-radiance-500 w-full placeholder-primary-900/60 bg-transparent'}
                         placeholder={'Cari video, podcast, atau poster...'}
                     />
                     <button type="submit">
-                        <svg className={'size-4 lg:size-5 stroke-primary-500 hover:stroke-primary-600 duration-150'}
+                        <svg className={'size-4 lg:size-5 stroke-azure-radiance-500 hover:stroke-azure-radiance-600 duration-150'}
                              viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M6.5 12C9.53757 12 12 9.53757 12 6.5C12 3.46243 9.53757 1 6.5 1C3.46243 1 1 3.46243 1 6.5C1 9.53757 3.46243 12 6.5 12Z"
@@ -77,7 +77,7 @@ const BerandaHero = () => {
                                 <li
                                     key={index}
                                     onClick={() => handleSuggestionClick(suggestion)}
-                                    className="p-2 cursor-pointer hover:bg-primary-500 hover:text-white"
+                                    className="p-2 cursor-pointer hover:bg-azure-radiance-500 hover:text-white"
                                 >
                                     {suggestion}
                                 </li>

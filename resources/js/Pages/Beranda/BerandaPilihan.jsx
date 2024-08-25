@@ -7,10 +7,10 @@ const BerandaPilihan = () => {
 
     return (
         <section className="flex flex-col items-center px-4 lg:px-16 py-4 lg:py-12">
-            <h2 className="mt-4 text-2xl text-primary-500 font-bold text-center">
+            <h2 className="mt-4 text-2xl text-azure-radiance-500 font-bold text-center">
                 Video Pilihan
             </h2>
-            <p className="text-sm lg:text-base text-primary-400 mt-2 text-center max-w-xl mx-auto">
+            <p className="text-sm lg:text-base text-azure-radiance-400 mt-2 text-center max-w-xl mx-auto">
                 Nikmati pembelajaran yang menyenangkan melalui video-video terpopuler di SociesMedia.
             </p>
 

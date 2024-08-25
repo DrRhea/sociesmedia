@@ -79,10 +79,10 @@ const BerandaKategori = () => {
 
     return (
         <section className="flex flex-col items-center mt-4 pt-12 pb-4 lg:pb-8">
-            <h2 className="mt-4 text-2xl text-primary-500 font-bold text-center">
+            <h2 className="mt-4 text-2xl text-azure-radiance-500 font-bold text-center">
                 Fitur Utama
             </h2>
-            <p className="text-sm lg:text-base text-primary-400 mt-2 text-center max-w-xl mx-auto">
+            <p className="text-sm lg:text-base text-azure-radiance-400 mt-2 text-center max-w-xl mx-auto">
                 Jelajahi berbagai kategori materi yang tersedia di SociesMedia. Kami menyediakan beragam pilihan untuk mendukung pembelajaran Anda secara efektif dan menyenangkan.
             </p>
             <Slider {...settings} className="mt-8 w-full text-center">
@@ -92,7 +92,7 @@ const BerandaKategori = () => {
                             <div className="p-8 rounded-full bg-gradient-to-br from-blue-200/20 to-indigo-300/20 w-fit flex items-center justify-center">
                                 <img src={category.image} alt={category.alt} className="size-8"/>
                             </div>
-                            <span className="text-primary-600 font-medium">
+                            <span className="text-azure-radiance-600 font-medium">
                                 {category.description}
                             </span>
                         </div>

@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion"
 
 const faqs = [
     {
@@ -28,48 +33,22 @@ const faqs = [
 ];
 
 const BerandaFAQ = () => {
-    const [activeIndex, setActiveIndex] = useState(null);
-
-    const toggleFAQ = index => {
-        setActiveIndex(activeIndex === index ? null : index);
-    };
-
     return (
         <div className="max-w-screen-md mx-auto px-4 py-4 lg:py-12">
             <h2 className="text-3xl font-bold text-center text-blue-600 mb-6">FAQ</h2>
             <p className="text-center text-gray-500 mb-12">
                 Temukan jawaban dari pertanyaan-pertanyaan yang paling sering ditanyakan oleh pengguna SociesMedia di sini.
             </p>
-            {faqs.map((faq, index) => (
-                <div key={index} className="mb-4">
-                    <button
-                        onClick={() => toggleFAQ(index)}
-                        className="w-full text-left text-lg text-blue-600 bg-blue-100 py-3 px-4 rounded-lg flex justify-between items-center"
-                    >
-                        {faq.question}
-                        <motion.span
-                            className="transform transition-transform duration-200"
-                            animate={{ rotate: activeIndex === index ? 180 : 0 }}
-                        >
-                            ▼
-                        </motion.span>
-                    </button>
-                    <AnimatePresence initial={false}>
-                        {activeIndex === index && (
-                            <motion.div
-                                key="content"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: 20 }}
-                                transition={{ duration: 0.5 }}
-                                className="overflow-hidden mt-2 p-4 bg-gray-100 rounded-lg text-gray-700"
-                            >
-                                {faq.answer}
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-                </div>
-            ))}
+            <Accordion type="single" collapsible className="w-full">
+                {faqs.map((faq, index) => (
+                    <AccordionItem key={index} value={`item-${index + 1}`}>
+                        <AccordionTrigger>{faq.question}</AccordionTrigger>
+                        <AccordionContent>
+                            {faq.answer}
+                        </AccordionContent>
+                    </AccordionItem>
+                ))}
+            </Accordion>
         </div>
     );
 };
