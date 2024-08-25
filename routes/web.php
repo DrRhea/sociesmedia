@@ -33,6 +33,6 @@
 
 
 // Group untuk pengguna yang udah login (auth) dan yang punya peran admin (admin)
-  Route::middleware(['auth', 'admin'])->group(function () {
+  Route::middleware(['auth', 'admin', 'owner'])->group(function () {
     Route::get('/dashboard', [MainController::class, 'index'])->name('dashboard');
   });

@@ -4,6 +4,17 @@ import { motion } from 'framer-motion';
 import CommandPalette from './CommandPalette';
 import LoginModal from './Auth/LoginModal.jsx';
 import RegisterModal from './Auth/RegisterModal';
+import {
+    DropdownMenu,
+    DropdownMenuCheckboxItem,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import {Button} from "@/Components/ui/button.jsx";
+import axios from 'axios';
 
 export const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -12,7 +23,8 @@ export const Navbar = () => {
     const [showRegister, setShowRegister] = useState(false);
     const [openPalette, setOpenPalette] = useState(false);
 
-    const { url } = usePage(); // Mendapatkan URL saat ini
+    const { url, props } = usePage(); // Mendapatkan URL saat ini dan props
+    const auth = props.auth || {}; // Jika auth tidak ada, buat object kosong sebagai fallback
 
     const menuItems = [
         { name: 'Beranda', href: '/' },
@@ -25,6 +37,15 @@ export const Navbar = () => {
     const menuToggle = () => {
         setOpenMenu(!openMenu);
     }
+
+    const handleLogout = async () => {
+        try {
+            await axios.post('/logout');
+            window.location.href = '/'; // Arahkan ke halaman yang diinginkan setelah logout
+        } catch (error) {
+            console.error('Logout gagal:', error);
+        }
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -93,7 +114,7 @@ export const Navbar = () => {
                                 </svg>
                             </button>
                             :
-                            <button className={'mr-4'} onClick={menuToggle}>
+                            <button className={''} onClick={menuToggle}>
                                 <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path d="M20 2L2 20" stroke="#529AFF" stroke-width="3" stroke-linecap="round"
@@ -134,9 +155,34 @@ export const Navbar = () => {
                                 <path d="M13.5 13.5L10 10" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </button>
-                        <button onClick={() => setShowLogin(true)} className="hover:text-[#1C7AFF] transition-colors duration-200">
-                            Masuk
-                        </button>
+                        {auth.user ? (
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <Button
+                                        variant="outline"
+                                        size="icon"
+                                        className="overflow-hidden rounded-full bg-transparent border-none focus-visible:ring-offset-0 focus-visible:ring-0 ring-0 focus:ring-0"
+                                    >
+                                        <svg className={'size-5'} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M13.36 13.9641C12.9401 12.6549 12.1154 11.5129 11.0048 10.7027C9.89409 9.89251 8.5548 9.45593 7.18 9.45593C5.80519 9.45593 4.4659 9.89251 3.35521 10.7027C2.24453 11.5129 1.41982 12.6549 1 13.9641H13.36Z" stroke="#529AFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M7.17994 9.46411C9.51724 9.46411 11.412 7.56935 11.412 5.23205C11.412 2.89475 9.51724 1 7.17994 1C4.84264 1 2.94788 2.89475 2.94788 5.23205C2.94788 7.56935 4.84264 9.46411 7.17994 9.46411Z" stroke="#529AFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="end">
+                                    <DropdownMenuLabel>{auth.user && <span>{auth.user.name}</span>}</DropdownMenuLabel>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem>Settings</DropdownMenuItem>
+                                    <DropdownMenuItem>Support</DropdownMenuItem>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        ) : (
+                            <button onClick={() => setShowLogin(true)} className="hover:text-[#1C7AFF] transition-colors duration-200">
+                                Masuk
+                            </button>
+                        )}
                     </div>
 
                 </div>
