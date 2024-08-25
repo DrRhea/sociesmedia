@@ -10,6 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import axios from 'axios';
 
 const RegisterModal = ({ onClose, onLoginClick }) => {
     const [username, setUsername] = useState('');
@@ -17,33 +18,43 @@ const RegisterModal = ({ onClose, onLoginClick }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [role, setRole] = useState('murid');  // Peran default
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
+        setLoading(true);
 
         // Validasi bahwa password dan konfirmasi password cocok
         if (password !== confirmPassword) {
             setError('Password dan konfirmasi password tidak cocok');
+            setLoading(false);
             return;
         }
 
         // Validasi bahwa username tidak kosong
         if (username.trim() === '') {
             setError('Username tidak boleh kosong');
+            setLoading(false);
             return;
         }
 
-        // Implementasi register di sini
-        // axios.post('/register', { username, name, email, password, role })
-        //     .then(response => {
-        //         // Handle success
-        //     })
-        //     .catch(error => {
-        //         setError(error.response.data.message || 'Terjadi kesalahan. Silakan coba lagi.');
-        //     });
+        try {
+            // Kirim data register ke server
+            await axios.post('/register', {
+                username,
+                name,
+                email,
+                password,
+            });
+            // Setelah sukses, bisa redirect atau lakukan aksi lain
+            setLoading(false);
+            window.location.href = '/';
+        } catch (error) {
+            setError(error.response?.data?.message || 'Terjadi kesalahan. Silakan coba lagi.');
+            setLoading(false);
+        }
     };
 
     const handleGoogleRegister = () => {
@@ -117,23 +128,19 @@ const RegisterModal = ({ onClose, onLoginClick }) => {
                                     required
                                 />
                             </div>
-                            <div className="grid gap-2">
-                                <Label htmlFor="role">Peran</Label>
-                                <select
-                                    id="role"
-                                    value={role}
-                                    onChange={(e) => setRole(e.target.value)}
-                                    className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-primary-500 focus:border-azure-radiance-500"
-                                    required
-                                >
-                                    <option value="murid">Murid</option>
-                                    <option value="guru">Guru</option>
-                                </select>
-                            </div>
-                            <Button type="submit" className="w-full bg-azure-radiance-500 hover:bg-azure-radiance-400">
-                                Buat akun
+                            <Button
+                                type="submit"
+                                className="w-full bg-azure-radiance-500 hover:bg-azure-radiance-400"
+                                disabled={loading}
+                            >
+                                {loading ? 'Memproses...' : 'Buat akun'}
                             </Button>
-                            <Button variant="outline" className="w-full" onClick={handleGoogleRegister}>
+                            <Button
+                                variant="outline"
+                                className="w-full"
+                                onClick={handleGoogleRegister}
+                                disabled={loading}
+                            >
                                 Daftar dengan Google
                             </Button>
                         </div>

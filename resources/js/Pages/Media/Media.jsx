@@ -10,6 +10,9 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
+import {motion} from "framer-motion";
+import MediaHero from "@/Pages/Media/MediaHero.jsx";
+import BerandaKategori from "@/Pages/Beranda/BerandaKategori.jsx";
 
 
 const Media = () => {
@@ -18,18 +21,32 @@ const Media = () => {
             <Head>
                 <title>Media</title>
             </Head>
-            <Dialog>
-                <DialogTrigger>Open</DialogTrigger>
-                <DialogContent>
-                    <DialogHeader>
-                        <DialogTitle>Are you absolutely sure?</DialogTitle>
-                        <DialogDescription>
-                            This action cannot be undone. This will permanently delete your account
-                            and remove your data from our servers.
-                        </DialogDescription>
-                    </DialogHeader>
-                </DialogContent>
-            </Dialog>
+            <div className="flex flex-col w-full gap-8 relative overflow-x-hidden">
+                {/* Menambahkan animasi pada setiap komponen */}
+                <motion.div
+                    initial={{opacity: 0, y: 50}}
+                    animate={{opacity: 1, y: 0}}
+                    transition={{duration: 0.8, ease: 'easeOut'}}
+                >
+                    <MediaHero />
+                </motion.div>
+
+                {/*<motion.div*/}
+                {/*    initial={{opacity: 0, y: 50}}*/}
+                {/*    animate={{opacity: 1, y: 0}}*/}
+                {/*    transition={{duration: 0.8, ease: 'easeOut', delay: 0.2}}*/}
+                {/*>*/}
+                {/*    <BerandaKategori/>*/}
+                {/*</motion.div>*/}
+
+                {/*<motion.div*/}
+                {/*    initial={{opacity: 0, y: 50}}*/}
+                {/*    animate={{opacity: 1, y: 0}}*/}
+                {/*    transition={{duration: 0.8, ease: 'easeOut', delay: 0.4}}*/}
+                {/*>*/}
+                {/*    <BerandaPilihan/>*/}
+                {/*</motion.div>*/}
+            </div>
         </AppLayout>
     );
 };

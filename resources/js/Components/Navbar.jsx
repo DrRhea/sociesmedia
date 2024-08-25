@@ -54,12 +54,12 @@ export const Navbar = () => {
     return (
         <>
             <nav
-                className={`fixed bg-azure-radiance-50/25 backdrop-blur-md py-2 z-[10000] right-0 left-0 w-full text-lg transition-all duration-300 ease-in-out top-0 ${scrolled ? 'shadow-md' : ''}`}>
+                className={`fixed bg-azure-radiance-50/25 backdrop-blur-md py-2 z-[10000] right-0 left-0 w-full text-lg transition-all duration-300 ease-in-out top-0 ${scrolled ? 'shadow-sm' : ''}`}>
                 <div className={'container mx-auto grid grid-cols-4 lg:grid-cols-12 items-center'}>
-                    <div className={`col-span-2 font-medium py-2 px-4 transition-all duration-300 justify-self-start`}>
+                    <div className={`col-span-2 font-medium py-2 lg:px-4 transition-all duration-300 justify-self-start`}>
                         <Link href="/" className="flex items-center group">
                             <span
-                                className={'bg-gradient-to-r from-primary-500 to-primary-300 text-transparent bg-clip-text text-2xl font-bold tracking-[-1px] group-hover:text-azure-radiance-500'}>
+                                className={'bg-gradient-to-r from-azure-radiance-500 to-azure-radiance-300 text-transparent bg-clip-text text-2xl font-bold tracking-[-1px] hover:text-azure-radiance-500'}>
                                 SociesMedia
                             </span>
                         </Link>
