@@ -4,14 +4,32 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import axios from 'axios';
 
 const LoginModal = ({ onClose, onRegisterClick }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Implementasi login di sini
+        setError('');
+        setLoading(true);
+
+        try {
+            const response = await axios.post('/login', {
+                email,
+                password,
+            });
+
+            if (response.status === 200) {
+                window.location.href = '/'; // Redirect ke halaman utama atau halaman tujuan
+            }
+        } catch (error) {
+            setError('Email atau password salah.');
+            setLoading(false);
+        }
     };
 
     const handleGoogleLogin = () => {
@@ -28,6 +46,7 @@ const LoginModal = ({ onClose, onRegisterClick }) => {
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
+                    {error && <div className="text-red-600 text-sm mb-4">{error}</div>}
                     <form className="grid gap-4" onSubmit={handleSubmit}>
                         <div className="grid gap-2">
                             <Label htmlFor="email">Email</Label>
@@ -55,8 +74,8 @@ const LoginModal = ({ onClose, onRegisterClick }) => {
                                 required
                             />
                         </div>
-                        <Button type="submit" className="w-full">
-                            Masuk
+                        <Button type="submit" className="w-full" disabled={loading}>
+                            {loading ? 'Memproses...' : 'Masuk'}
                         </Button>
                         <Button variant="outline" onClick={handleGoogleLogin} className="w-full">
                             Masuk dengan Google
